@@ -54,7 +54,7 @@ export const HowItWorks = () => {
         </div>
         <div className="mt-12 text-center">
           <a
-            href="https://scopecraft-hazel.vercel.app/"
+            href="https://appcostestimator.com/"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#3B82F6] hover:bg-[#1D4ED8]"
           >
             Try It Now

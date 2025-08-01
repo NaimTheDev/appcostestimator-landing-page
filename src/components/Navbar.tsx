@@ -37,7 +37,7 @@ export const Navbar = () => {
                 Login
               </a>
               <a
-                href="https://scopecraft-hazel.vercel.app/"
+                href="https://appcostestimator.com/"
                 className="ml-3 px-4 py-2 rounded-md text-sm font-medium text-white bg-[#3B82F6] hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3B82F6]"
               >
                 Get Started
