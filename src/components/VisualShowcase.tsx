@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 export const VisualShowcase = () => {
-  return <section className="py-12 bg-white">
+  return (
+    <section id="visualShowcase" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -28,7 +29,11 @@ export const VisualShowcase = () => {
                 </div>
               </div>
               <div className="flex-shrink-0">
-                <img className="h-48 w-full object-cover" src="/Screenshot_2025-07-26_at_1.17.51_PM.png" alt="Project type selection screen" />
+                <img
+                  className="h-48 w-full object-cover"
+                  src="/Screenshot_2025-07-26_at_1.17.51_PM.png"
+                  alt="Project type selection screen"
+                />
               </div>
             </div>
             <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
@@ -46,7 +51,11 @@ export const VisualShowcase = () => {
                 </div>
               </div>
               <div className="flex-shrink-0">
-                <img className="h-48 w-full object-cover" src="/Screenshot_2025-07-26_at_1.18.15_PM.png" alt="Budget and notes configuration screen" />
+                <img
+                  className="h-48 w-full object-cover"
+                  src="/Screenshot_2025-07-26_at_1.18.15_PM.png"
+                  alt="Budget and notes configuration screen"
+                />
               </div>
             </div>
             <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
@@ -64,11 +73,16 @@ export const VisualShowcase = () => {
                 </div>
               </div>
               <div className="flex-shrink-0">
-                <img className="h-48 w-full object-cover" src="/Screenshot_2025-07-26_at_1.19.13_PM.png" alt="Project estimate with feature breakdown" />
+                <img
+                  className="h-48 w-full object-cover"
+                  src="/Screenshot_2025-07-26_at_1.19.13_PM.png"
+                  alt="Project estimate with feature breakdown"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

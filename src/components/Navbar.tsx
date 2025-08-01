@@ -15,7 +15,7 @@ export const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
               <a
-                href="#features"
+                href="#visualShowcase"
                 className="px-3 py-2 text-sm font-medium hover:text-[#3B82F6]"
               >
                 Features
@@ -26,18 +26,7 @@ export const Navbar = () => {
               >
                 How It Works
               </a>
-              <a
-                href="#pricing"
-                className="px-3 py-2 text-sm font-medium hover:text-[#3B82F6]"
-              >
-                Pricing
-              </a>
-              <a
-                href="#login"
-                className="px-3 py-2 text-sm font-medium hover:text-[#3B82F6]"
-              >
-                Login
-              </a>
+
               <a
                 href="https://appcostestimator.com/"
                 className="ml-3 px-4 py-2 rounded-md text-sm font-medium text-white bg-[#3B82F6] hover:bg-[#1D4ED8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3B82F6]"
@@ -66,7 +55,7 @@ export const Navbar = () => {
         <div className="md:hidden bg-white border-t border-[#E5E7EB] shadow-sm px-4 pt-4 pb-6">
           <div className="flex flex-col space-y-2">
             <a
-              href="#features"
+              href="#visualShowcase"
               className="px-3 py-2 text-sm font-medium hover:text-[#3B82F6]"
               onClick={() => setMobileMenuOpen(false)}
             >
