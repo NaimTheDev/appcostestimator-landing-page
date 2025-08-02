@@ -82,16 +82,19 @@ https://getmyappcostestimator.com`,
     console.log(`Welcome email sent to: ${email}`);
     res.json({ success: true, message: 'Welcome email sent successfully!' });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending welcome email:', error);
     
     // Handle specific SendGrid errors
-    if (error.response?.body?.errors) {
-      const sendGridError = error.response.body.errors[0];
-      return res.status(400).json({ 
-        success: false, 
-        error: `Email error: ${sendGridError.message}` 
-      });
+    if (error && typeof error === 'object' && 'response' in error) {
+      const sendGridError = error as { response?: { body?: { errors?: Array<{ message: string }> } } };
+      if (sendGridError.response?.body?.errors) {
+        const errorMessage = sendGridError.response.body.errors[0];
+        return res.status(400).json({ 
+          success: false, 
+          error: `Email error: ${errorMessage.message}` 
+        });
+      }
     }
 
     res.status(500).json({ 
