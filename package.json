@@ -7,27 +7,38 @@
     "dev": "npx vite",
     "build": "npx vite build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "preview": "npx vite preview"
+    "preview": "npx vite preview",
+    "server:dev": "npx tsx watch server/index.ts",
+    "server:build": "npx tsc server/index.ts --outDir dist/server --target es2020 --module commonjs --esModuleInterop",
+    "dev:full": "concurrently \"npm run dev\" \"npm run server:dev\""
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "lucide-react": "^0.441.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "lucide-react": "^0.441.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/node": "^20.11.18",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "latest",
+    "concurrently": "^9.2.0",
     "eslint": "^8.50.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "typescript": "^5.5.4",
-    "vite": "^5.2.0",
+    "postcss": "latest",
     "tailwindcss": "3.4.17",
-    "autoprefixer": "latest",
-    "postcss": "latest"
+    "tsx": "^4.20.3",
+    "typescript": "^5.5.4",
+    "vite": "^5.2.0"
   }
 }
