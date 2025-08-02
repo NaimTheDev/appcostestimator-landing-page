@@ -1,81 +1,61 @@
 import React from "react";
-import { DollarSignIcon, ClockIcon, FileTextIcon } from "lucide-react";
+import { SearchIcon, FileTextIcon, BriefcaseIcon } from "lucide-react";
 export const ProblemSolution = () => {
   return (
-    <section id="problemSolution" className="py-12 bg-[#f8f9fa]">
+    <section id="problemSolution" className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Freelance Devs Deserve Better Tools
+            Why Choose Our Estimator?
           </h2>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
-            Stop losing money and time with outdated estimation methods.
+          <p className="mt-4 max-w-2xl text-xl text-gray-600 mx-auto">
+            Everything you need to create professional app cost estimates in minutes
           </p>
         </div>
-        <div className="mt-10">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="pt-6">
-              <div className="flow-root bg-white rounded-lg px-6 pb-8">
-                <div className="-mt-6">
-                  <div>
-                    <span className="inline-flex items-center justify-center p-3 bg-[#3B82F6] rounded-md shadow-lg">
-                      <DollarSignIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </div>
-                  <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                    Stop Undercharging
-                  </h3>
-                  <p className="mt-5 text-base text-gray-500">
-                    Most freelancers underestimate project complexity and leave
-                    money on the table. MyAppCostEstimator ensures you charge
-                    what you're worth.
-                  </p>
+        <div className="mt-16">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl p-8 h-full transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                  <SearchIcon className="h-8 w-8 text-white" />
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  🔍 Quick & Realistic Estimates
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Get accurate project estimates in minutes, not hours. Our AI-powered system 
+                  analyzes your requirements and provides realistic cost breakdowns.
+                </p>
               </div>
             </div>
-            <div className="pt-6">
-              <div className="flow-root bg-white rounded-lg px-6 pb-8">
-                <div className="-mt-6">
-                  <div>
-                    <span className="inline-flex items-center justify-center p-3 bg-[#3B82F6] rounded-md shadow-lg">
-                      <ClockIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </div>
-                  <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                    Prevent Scope Creep
-                  </h3>
-                  <p className="mt-5 text-base text-gray-500">
-                    Detailed feature breakdowns create clear boundaries that
-                    protect you from endless revisions and feature requests.
-                  </p>
+            
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl p-8 h-full transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                  <FileTextIcon className="h-8 w-8 text-white" />
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  📄 Auto-Generated Proposal PDFs
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Professional, branded proposals ready to send to clients. Complete with 
+                  detailed feature breakdowns, timelines, and cost justifications.
+                </p>
               </div>
             </div>
-            <div className="pt-6">
-              <div className="flow-root bg-white rounded-lg px-6 pb-8">
-                <div className="-mt-6">
-                  <div>
-                    <span className="inline-flex items-center justify-center p-3 bg-[#3B82F6] rounded-md shadow-lg">
-                      <FileTextIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  </div>
-                  <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                    Save Hours on Proposals
-                  </h3>
-                  <p className="mt-5 text-base text-gray-500">
-                    Stop wasting evenings crafting proposals. Generate
-                    professional client-ready PDFs in minutes, not hours.
-                  </p>
+            
+            <div className="relative">
+              <div className="bg-white rounded-2xl shadow-xl p-8 h-full transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
+                  <BriefcaseIcon className="h-8 w-8 text-white" />
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  💼 Built for Freelancers & PMs
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Designed specifically for independent developers and project managers. 
+                  Stop undercharging and start winning more profitable projects.
+                </p>
               </div>
             </div>
           </div>
