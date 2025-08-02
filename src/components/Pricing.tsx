@@ -20,7 +20,7 @@ export const Pricing = () => {
     setMessage('');
 
     try {
-      const response = await fetch('http://localhost:3001/api/join-beta', {
+      const response = await fetch('/api/join-beta', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
