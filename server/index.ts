@@ -9,7 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Configure SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
+const apiKey = process.env.SENDGRID_API_KEY || "";
+if (!apiKey.startsWith("SG.")) {
+  console.warn("Warning: SendGrid API key format appears invalid");
+}
+sgMail.setApiKey(apiKey);
 
 // Middleware
 app.use(cors());
@@ -70,7 +74,7 @@ https://getmyappcostestimator.com`,
             <li>✅ A say in how we price the product</li>
             <li>✅ Locked-in future discounts</li>
           </ul>
-          <p>Feel free to explore the <a href="https://getmyappcostestimator.com">estimator tool</a> and share your thoughts with us.</p>
+          <p>Feel free to explore the <a href="https://appcostestimator.com/">estimator tool</a> and share your thoughts with us.</p>
           <p>Cheers,<br/>Naim<br/>Founder, AppCostEstimator</p>
         </div>
       `,
