@@ -2,28 +2,28 @@ import React, { useState } from "react";
 import { CheckIcon } from "lucide-react";
 
 export const Pricing = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleBetaSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!email || !email.includes('@')) {
-      setMessage('Please enter a valid email address');
+
+    if (!email || !email.includes("@")) {
+      setMessage("Please enter a valid email address");
       setIsSuccess(false);
       return;
     }
 
     setIsSubmitting(true);
-    setMessage('');
+    setMessage("");
 
     try {
-      const response = await fetch('http://localhost:3001/api/join-beta', {
-        method: 'POST',
+      const response = await fetch("/api/join-beta", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email }),
       });
@@ -31,15 +31,17 @@ export const Pricing = () => {
       const data = await response.json();
 
       if (data.success) {
-        setMessage('Welcome! Check your email for a welcome message.');
+        setMessage(
+          "🎉 You’re in! Check your inbox for a special welcome to the beta."
+        );
         setIsSuccess(true);
-        setEmail('');
+        setEmail("");
       } else {
-        setMessage(data.error || 'Something went wrong. Please try again.');
+        setMessage(data.error || "Something went wrong. Please try again.");
         setIsSuccess(false);
       }
     } catch (error) {
-      setMessage('Unable to connect to server. Please try again later.');
+      setMessage("Unable to connect to server. Please try again later.");
       setIsSuccess(false);
     } finally {
       setIsSubmitting(false);
@@ -68,12 +70,16 @@ export const Pricing = () => {
             <div className="text-center">
               <h3 className="text-2xl font-bold text-gray-900">Free</h3>
               <div className="mt-4">
-                <span className="text-4xl font-extrabold text-gray-900">$0</span>
+                <span className="text-4xl font-extrabold text-gray-900">
+                  $0
+                </span>
                 <span className="text-lg text-gray-600">/month</span>
               </div>
-              <p className="mt-4 text-gray-600">Perfect for trying out the platform</p>
+              <p className="mt-4 text-gray-600">
+                Perfect for trying out the platform
+              </p>
             </div>
-            
+
             <ul className="mt-8 space-y-4">
               <li className="flex items-center">
                 <CheckIcon className="h-5 w-5 text-green-500 mr-3" />
@@ -107,16 +113,20 @@ export const Pricing = () => {
                 Most Popular
               </span>
             </div>
-            
+
             <div className="text-center">
               <h3 className="text-2xl font-bold text-gray-900">Pro</h3>
               <div className="mt-4">
-                <span className="text-4xl font-extrabold text-gray-900">$29</span>
+                <span className="text-4xl font-extrabold text-gray-900">
+                  $29
+                </span>
                 <span className="text-lg text-gray-600">/month</span>
               </div>
-              <p className="mt-4 text-gray-600">For growing freelancers and agencies</p>
+              <p className="mt-4 text-gray-600">
+                For growing freelancers and agencies
+              </p>
             </div>
-            
+
             <ul className="mt-8 space-y-4">
               <li className="flex items-center">
                 <CheckIcon className="h-5 w-5 text-green-500 mr-3" />
@@ -152,12 +162,16 @@ export const Pricing = () => {
             <div className="text-center">
               <h3 className="text-2xl font-bold text-gray-900">Pro+</h3>
               <div className="mt-4">
-                <span className="text-4xl font-extrabold text-gray-900">$99</span>
+                <span className="text-4xl font-extrabold text-gray-900">
+                  $99
+                </span>
                 <span className="text-lg text-gray-600">/month</span>
               </div>
-              <p className="mt-4 text-gray-600">For agencies and enterprise users</p>
+              <p className="mt-4 text-gray-600">
+                For agencies and enterprise users
+              </p>
             </div>
-            
+
             <ul className="mt-8 space-y-4">
               <li className="flex items-center">
                 <CheckIcon className="h-5 w-5 text-green-500 mr-3" />
@@ -190,10 +204,8 @@ export const Pricing = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-lg text-gray-600 mb-6">
-            Join our beta
-          </p>
-          
+          <p className="text-lg text-gray-600 mb-6">Join our beta</p>
+
           <form onSubmit={handleBetaSignup} className="max-w-md mx-auto">
             <div className="flex flex-col sm:flex-row gap-3">
               <input
@@ -205,21 +217,23 @@ export const Pricing = () => {
                 disabled={isSubmitting}
                 required
               />
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={isSubmitting}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                {isSubmitting ? 'Joining...' : 'Join Beta'}
+                {isSubmitting ? "Joining..." : "Join Beta"}
               </button>
             </div>
-            
+
             {message && (
-              <div className={`mt-4 p-3 rounded-lg text-sm ${
-                isSuccess 
-                  ? 'bg-green-50 text-green-700 border border-green-200' 
-                  : 'bg-red-50 text-red-700 border border-red-200'
-              }`}>
+              <div
+                className={`mt-4 p-3 rounded-lg text-sm ${
+                  isSuccess
+                    ? "bg-green-50 text-green-700 border border-green-200"
+                    : "bg-red-50 text-red-700 border border-red-200"
+                }`}
+              >
                 {message}
               </div>
             )}
