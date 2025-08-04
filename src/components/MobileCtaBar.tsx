@@ -20,9 +20,9 @@ export const MobileCtaBar = () => {
             <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
               <a
                 href="https://appcostestimator.com/"
-                className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-[#3B82F6] bg-white hover:bg-gray-50"
+                className="flex items-center justify-center px-4 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-[#3B82F6] bg-white hover:bg-gray-50 w-full min-h-[44px]"
               >
-                Start Now
+                Show me my cost →
               </a>
             </div>
           </div>

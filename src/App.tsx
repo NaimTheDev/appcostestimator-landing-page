@@ -1,11 +1,12 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { MailingListSignup } from './components/MailingListSignup';
 import { VisualShowcase } from './components/VisualShowcase';
 import { ProblemSolution } from './components/ProblemSolution';
 import { HowItWorks } from './components/HowItWorks';
-import { SocialProof } from './components/SocialProof';
-import { Pricing } from './components/Pricing';
+import { FAQ } from './components/FAQ';
+// import { Pricing } from './components/Pricing';
 import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
 import { MobileCtaBar } from './components/MobileCtaBar';
@@ -17,9 +18,10 @@ export function App() {
         <VisualShowcase />
         <ProblemSolution />
         <HowItWorks />
-        <SocialProof />
-        <Pricing />
+        <FAQ />
+        {/* <Pricing /> */}
         <CallToAction />
+        <MailingListSignup />
       </main>
       <Footer />
       <MobileCtaBar />

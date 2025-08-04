@@ -14,21 +14,6 @@ export const Footer = () => {
               Professional app cost estimation tool for freelancers and agencies. 
               Generate accurate proposals in minutes, not hours.
             </p>
-            
-            {/* Email Signup */}
-            <div className="max-w-md">
-              <h4 className="text-sm font-medium text-gray-300 mb-3">Subscribe for Updates</h4>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
-                />
-                <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-r-lg transition-colors duration-200 font-medium">
-                  Subscribe
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Links */}
