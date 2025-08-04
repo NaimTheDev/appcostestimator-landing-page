@@ -15,13 +15,13 @@ export function App() {
       <Navbar />
       <main>
         <Hero />
-        <MailingListSignup />
         <VisualShowcase />
         <ProblemSolution />
         <HowItWorks />
         <FAQ />
         {/* <Pricing /> */}
         <CallToAction />
+        <MailingListSignup />
       </main>
       <Footer />
       <MobileCtaBar />

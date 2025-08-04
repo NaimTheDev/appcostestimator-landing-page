@@ -85,7 +85,7 @@ export const MailingListSignup = () => {
           )}
           
           <p className="mt-3 text-xs text-gray-500 text-center">
-            We don't send spam or share your email. Unsubscribe anytime.
+            We don't spam or share your email, we hate that just as much as you do 😊
           </p>
         </div>
       </div>
