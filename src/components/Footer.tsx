@@ -28,6 +28,7 @@ export const Footer = () => {
                   Subscribe
                 </button>
               </div>
+              <p className="text-xs text-gray-500 mt-2">We don't send spam or share your email.</p>
             </div>
           </div>
 

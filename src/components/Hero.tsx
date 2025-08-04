@@ -7,12 +7,12 @@ export const Hero = () => {
           <div className="pt-10 sm:pt-16 lg:pt-8 xl:pt-16">
             <div className="sm:text-center lg:text-left px-4 sm:px-8 xl:pl-0">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                <span className="block">Estimate Your App</span>
-                <span className="block text-[#3B82F6]">Build Cost</span>
-                <span className="block">Instantly</span>
+                <span className="block">Estimate your app cost in 60 sec</span>
+                <span className="block text-[#3B82F6]">— before you overshoot</span>
+                <span className="block">your budget</span>
               </h1>
               <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                Answer a few questions to get an instant estimate + proposal PDF
+                Select platforms, screens, features — get a transparent cost breakdown.
               </p>
               
               {/* New styled input field */}
@@ -37,10 +37,7 @@ export const Hero = () => {
                     href="https://appcostestimator.com/"
                     className="w-full flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl md:text-lg md:px-10"
                   >
-                    Try the Estimator
-                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                    Show me my cost →
                   </a>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
@@ -50,6 +47,20 @@ export const Hero = () => {
                   >
                     How It Works
                   </a>
+                </div>
+              </div>
+              
+              {/* Estimate Output Preview */}
+              <div className="mt-8 sm:mt-10">
+                <div className="text-xs text-gray-500 mb-3 text-center lg:text-left">
+                  See the detailed breakdown you'll get:
+                </div>
+                <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-md mx-auto lg:mx-0">
+                  <img
+                    className="w-full h-auto rounded-md"
+                    src="/Screenshot_2025-07-26_at_1.17.51_PM.png"
+                    alt="Example cost estimate output showing feature breakdown"
+                  />
                 </div>
               </div>
             </div>
