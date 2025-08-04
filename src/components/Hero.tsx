@@ -49,20 +49,6 @@ export const Hero = () => {
                   </a>
                 </div>
               </div>
-              
-              {/* Estimate Output Preview */}
-              <div className="mt-8 sm:mt-10">
-                <div className="text-xs text-gray-500 mb-3 text-center lg:text-left">
-                  See the detailed breakdown you'll get:
-                </div>
-                <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 max-w-md mx-auto lg:mx-0">
-                  <img
-                    className="w-full h-auto rounded-md"
-                    src="/Screenshot_2025-07-26_at_1.17.51_PM.png"
-                    alt="Example cost estimate output showing feature breakdown"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>

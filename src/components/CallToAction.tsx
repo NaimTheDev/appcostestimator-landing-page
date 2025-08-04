@@ -18,14 +18,6 @@ export const CallToAction = () => {
               Get Started Free
             </a>
           </div>
-          <div className="ml-3 inline-flex rounded-md shadow">
-            <a
-              href="#demo"
-              className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-[#3B82F6] bg-white hover:bg-gray-50"
-            >
-              Watch Demo
-            </a>
-          </div>
         </div>
       </div>
     </section>

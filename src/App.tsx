@@ -1,11 +1,10 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Testimonials } from './components/Testimonials';
+import { MailingListSignup } from './components/MailingListSignup';
 import { VisualShowcase } from './components/VisualShowcase';
 import { ProblemSolution } from './components/ProblemSolution';
 import { HowItWorks } from './components/HowItWorks';
-import { SocialProof } from './components/SocialProof';
 import { FAQ } from './components/FAQ';
 // import { Pricing } from './components/Pricing';
 import { CallToAction } from './components/CallToAction';
@@ -16,11 +15,10 @@ export function App() {
       <Navbar />
       <main>
         <Hero />
-        <Testimonials />
+        <MailingListSignup />
         <VisualShowcase />
         <ProblemSolution />
         <HowItWorks />
-        <SocialProof />
         <FAQ />
         {/* <Pricing /> */}
         <CallToAction />
