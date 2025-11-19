@@ -13,10 +13,12 @@
     "dev:full": "concurrently \"npm run dev\" \"npm run server:dev\""
   },
   "dependencies": {
+    "@react-spring/web": "^10.0.3",
     "@sendgrid/mail": "^8.1.5",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "fastify": "^5.6.2",
     "lucide-react": "^0.441.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
