@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CheckIcon } from "lucide-react";
+import { JOIN_BETA_ENDPOINT } from "../lib/api";
 
 export const Pricing = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export const Pricing = () => {
     setMessage("");
 
     try {
-      const response = await fetch("/api/join-beta", {
+      const response = await fetch(JOIN_BETA_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

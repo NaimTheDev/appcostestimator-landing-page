@@ -1,57 +1,32 @@
-import express from "express";
-import cors from "cors";
-import sgMail from "@sendgrid/mail";
+import Fastify from "fastify";
+import fastifyCors from "@fastify/cors";
+import fastifyMailer from "fastify-mailer";
+import type { SentMessageInfo, Transporter } from "nodemailer";
 import dotenv from "dotenv";
+
+export interface FastifyMailerNamedInstance {
+  [namespace: string]: Transporter<SentMessageInfo>;
+}
+
+export type FastifyMailer = FastifyMailerNamedInstance & Transporter<SentMessageInfo>;
+
+declare module "fastify" {
+  interface FastifyInstance {
+    mailer: FastifyMailer;
+  }
+}
 
 dotenv.config();
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+const app = Fastify();
+const PORT = Number(process.env.PORT) || 3001;
 
-// Configure SendGrid
-const apiKey = process.env.SENDGRID_API_KEY || "";
-if (!apiKey.startsWith("SG.")) {
-  console.warn("Warning: SendGrid API key format appears invalid");
-}
-sgMail.setApiKey(apiKey);
+type JoinBetaBody = {
+  email?: string;
+};
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Health check endpoint
-app.get("/api/health", (req, res) => {
-  res.json({ status: "OK", message: "Server is running" });
-});
-
-// Join beta endpoint
-app.post("/api/join-beta", async (req, res) => {
-  try {
-    const { email } = req.body;
-
-    // Validate email
-    if (!email || !email.includes("@")) {
-      return res.status(400).json({
-        success: false,
-        error: "Please provide a valid email address",
-      });
-    }
-
-    // Check if SendGrid API key is configured
-    if (!process.env.SENDGRID_API_KEY) {
-      console.error("SENDGRID_API_KEY environment variable is not set");
-      return res.status(500).json({
-        success: false,
-        error: "Email service is not configured",
-      });
-    }
-
-    // Prepare welcome email
-    const msg = {
-      to: email,
-      from: "scopecraftapp@getmyappcostestimator.com",
-      subject: "👋 Welcome to the AppCostEstimator Beta!",
-      text: `Hey there!
+const subject = "👋 Welcome to the AppCostEstimator Beta!";
+const text = `Hey there!
 
 Thanks for signing up for the AppCostEstimator beta — we're excited to have you on board.
 
@@ -62,8 +37,9 @@ Feel free to explore the estimator tool and share your thoughts with us — your
 Cheers,  
 Naim  
 Founder, AppCostEstimator  
-https://getmyappcostestimator.com`,
-      html: `
+https://getmyappcostestimator.com`;
+
+const html = `
         <div style="font-family: sans-serif; line-height: 1.6;">
           <h2>Welcome to the AppCostEstimator Beta 🎉</h2>
           <p>Hey there!</p>
@@ -77,39 +53,74 @@ https://getmyappcostestimator.com`,
           <p>Feel free to explore the <a href="https://appcostestimator.com/">estimator tool</a> and share your thoughts with us.</p>
           <p>Cheers,<br/>Naim<br/>Founder, AppCostEstimator</p>
         </div>
-      `,
-    };
+      `;
 
-    // Send email via SendGrid
-    await sgMail.send(msg);
+app.get("/api/health", async () => {
+  return { status: "OK", message: "Server is running" };
+});
 
-    console.log(`Welcome email sent to: ${email}`);
-    res.json({ success: true, message: "Welcome email sent successfully!" });
-  } catch (error: unknown) {
-    console.error("Error sending welcome email:", error);
+app.post<{ Body: JoinBetaBody }>("/api/join-beta", async (request, reply) => {
+  try {
+    const { email } = request.body;
 
-    // Handle specific SendGrid errors
-    if (error && typeof error === "object" && "response" in error) {
-      const sendGridError = error as {
-        response?: { body?: { errors?: Array<{ message: string }> } };
-      };
-      if (sendGridError.response?.body?.errors) {
-        const errorMessage = sendGridError.response.body.errors[0];
-        return res.status(400).json({
-          success: false,
-          error: `Email error: ${errorMessage.message}`,
-        });
-      }
+    if (!email || !email.includes("@")) {
+      return reply.status(400).send({
+        success: false,
+        error: "Please provide a valid email address",
+      });
     }
 
-    res.status(500).json({
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPass = process.env.GMAIL_PASS;
+
+    if (!gmailUser || !gmailPass) {
+      request.log.error("GMAIL_USER or GMAIL_PASS environment variables are not set");
+      return reply.status(500).send({
+        success: false,
+        error: "Email service is not configured",
+      });
+    }
+
+    await request.server.mailer.sendMail({
+      from: gmailUser,
+      to: email,
+      subject,
+      text,
+      html,
+    });
+
+    request.log.info(`Welcome email sent to: ${email}`);
+    return { success: true, message: "Welcome email sent successfully!" };
+  } catch (error) {
+    request.log.error({ err: error }, "Error sending welcome email");
+    return reply.status(500).send({
       success: false,
       error: "Failed to send welcome email. Please try again.",
     });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`SendGrid configured: ${!!process.env.SENDGRID_API_KEY}`);
-});
+const start = async () => {
+  try {
+    await app.register(fastifyCors);
+    await app.register(fastifyMailer, {
+      transport: {
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.GMAIL_USER,
+          pass: process.env.GMAIL_PASS,
+        },
+      },
+    });
+    await app.listen({ port: PORT, host: "0.0.0.0" });
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Gmail credentials configured: ${!!(process.env.GMAIL_USER && process.env.GMAIL_PASS)}`);
+  } catch (err) {
+    app.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();

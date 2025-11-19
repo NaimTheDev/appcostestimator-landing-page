@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { animated, useSpring, useTrail } from '@react-spring/web';
+import { JOIN_BETA_ENDPOINT } from './lib/api';
 
 const navLinks = [
   { label: 'Why Teams Switch', href: '#why-teams-switch' },
@@ -73,6 +74,10 @@ const processSteps = [
 
 export function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [betaEmail, setBetaEmail] = useState("");
+  const [betaMessage, setBetaMessage] = useState("");
+  const [betaSuccess, setBetaSuccess] = useState<boolean | null>(null);
+  const [isSubmittingBeta, setIsSubmittingBeta] = useState(false);
   const heroSpring = useSpring({
     from: { opacity: 0, y: 60 },
     to: { opacity: 1, y: 0 },
@@ -103,6 +108,39 @@ export function App() {
     to: { opacity: 1, y: 0 },
     delay: 500,
   });
+
+  const handleBetaSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!betaEmail) return;
+    setIsSubmittingBeta(true);
+    setBetaMessage("");
+    setBetaSuccess(null);
+
+    try {
+      const response = await fetch(JOIN_BETA_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: betaEmail }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setBetaSuccess(true);
+        setBetaMessage("🎉 Welcome to the beta! Check your inbox for next steps.");
+        setBetaEmail("");
+      } else {
+        setBetaSuccess(false);
+        setBetaMessage(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setBetaSuccess(false);
+      setBetaMessage("Network error. Please try again in a moment.");
+    } finally {
+      setIsSubmittingBeta(false);
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-[#eef2ff] text-[#0f1b3d] overflow-hidden">
@@ -374,14 +412,35 @@ export function App() {
                   </ul>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter email address"
-                  className="flex-1 rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
-                />
-                <button className="px-6 py-3 rounded-2xl bg-blue-600 text-white font-semibold">Join Beta</button>
-              </div>
+              <form onSubmit={handleBetaSubmit} className="space-y-3">
+                <div className="flex flex-col md:flex-row gap-3">
+                  <input
+                    type="email"
+                    placeholder="Enter email address"
+                    className="flex-1 rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-200 disabled:opacity-70"
+                    value={betaEmail}
+                    onChange={(event) => setBetaEmail(event.target.value)}
+                    required
+                    disabled={isSubmittingBeta}
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmittingBeta || !betaEmail}
+                    className="px-6 py-3 rounded-2xl bg-blue-600 text-white font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isSubmittingBeta ? "Joining..." : "Join Beta"}
+                  </button>
+                </div>
+                {betaMessage && (
+                  <div
+                    className={`text-sm rounded-2xl px-4 py-3 ${
+                      betaSuccess ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
+                    }`}
+                  >
+                    {betaMessage}
+                  </div>
+                )}
+              </form>
               <div className="flex gap-3 text-slate-400 text-xl">
                 <span>🐦</span>
                 <span>📘</span>

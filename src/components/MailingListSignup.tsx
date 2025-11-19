@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { JOIN_BETA_ENDPOINT } from '../lib/api';
 
 export const MailingListSignup = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ export const MailingListSignup = () => {
     setMessage('');
 
     try {
-      const response = await fetch('/api/join-beta', {
+      const response = await fetch(JOIN_BETA_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
